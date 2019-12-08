@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: healthcheckapp
+build:
+  artifacts:
+  - image: gcr.io/pdcgcloudtest/healthcheckapp
+deploy:
+  kubectl:
+    manifests:
+    - config/deployment.yaml
+    - config/service.yaml
