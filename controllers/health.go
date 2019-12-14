@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 
 	"github.com/costap/healthcheckapp/model"
@@ -29,11 +28,4 @@ func (c *HealthController) Info(w http.ResponseWriter, req *http.Request, ps htt
 	bs, err := json.Marshal(model.ServiceInfo{Name: "HealthCheck Service", Version: "0.0.1"})
 	fmt.Fprintf(w, string(bs))
 	HandleError(w, err)
-}
-
-func HandleError(w http.ResponseWriter, err error) {
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		log.Fatalln(err)
-	}
 }
